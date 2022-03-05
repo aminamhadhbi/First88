@@ -1,0 +1,18 @@
+
+                        <a class="menu_item modal_dialog" href="#modal-dialog">
+
+
+                                <figure><img src="{{ asset('/uploads/' ~ p.nomimage ) }}"  alt="thumb" class="lazy"></figure>
+
+
+                                <h3> {{ p.nomproduit }}</h3>
+                                <p> {{ p.descriptionp }}</p>
+                                <strong>{{ p.prixproduit }}</strong>
+                                <strong>{{ p.type.nomtype }}</strong>
+                                <a href="{{ path ('update',{'id':p.id}) }}">Update</a>
+                                <a href="{{ path ('delete',{'id':p.id}) }}">Delete</a>
+
+
+                        </a>
+
+<!-- /row -->

@@ -1,0 +1,16 @@
+
+                        <a class="menu_item modal_dialog" href="#modal-dialog">
+
+
+
+<h1>event</h1>
+                            <h3> {{ e.Titre }}</h3>
+                            <img src="{{asset('/uploads/' ~ e.Image ) }}" data-src="{{asset('/uploads/' ~ e.Image ) }}" >
+                            <h7> {{ e.description }}</h7>
+                            <a href="{{ path ('edit',{'id':e.id}) }}">Update</a>
+                            <a href="{{ path ('delete',{'id':e.id}) }}">Delete</a>
+
+
+                        </a>
+
+<!-- /row -->
