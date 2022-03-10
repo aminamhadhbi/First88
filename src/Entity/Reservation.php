@@ -25,12 +25,12 @@ class Reservation
      * @Assert\GreaterThan("today")
      */
 
-    private $date_reseration;
+    public $date_reseration;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $nb_personne;
+    public $nb_personne;
 
     /**
      * @ORM\Column(type="string", length=255 )
@@ -41,7 +41,7 @@ class Reservation
      * maxMessage = "nom du produit doit etre au maximum {{ limit }} characters long")
      *
      */
-    private $description;
+    public $description;
 
     /**
      * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="reservations")

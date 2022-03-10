@@ -1,16 +1,28 @@
 <a class="menu_item modal_dialog" href="#modal-dialog">
+    <tr>
+
+        <td>
+            <p class="text-xs font-weight-bold mb-0"> {{ r.nb_personne }}</p>
+        </td>
+        <td>
+            <p class="text-xs font-weight-bold mb-0"> {{ r.description  }}</p>
+        </td>
+        <td>
+              {{ r.date_reseration |date }}
+        </td>
+        <td>
+            <p class="text-xs font-weight-bold mb-0"> <a href= "{{ path('de',{'id':r.id}) }}"> </a>Delete </p>
+            </td>
+        <td>
+            <p class="text-xs font-weight-bold mb-0"> <a href= "{{ path('editt',{'id':r.id}) }}"> </a>edi     </p>
+        </td>
 
 
-    <h1>Reservation</h1>
-
-    <h3> {{ Reservation.nb_personne }}</h3>
-    <p> {{ Reservation.descriptionp }}</p>
-    <strong>{{ Reservation.date }}</strong>
-
-    <a href="{{ path ('update',{'id':Reservation.id}) }}">Update</a>
-    <a href="{{ path ('delete',{'id':Reservation.id}) }}">Delete</a>
 
 
+
+
+    </tr>
 </a>
 
 <!-- /row -->

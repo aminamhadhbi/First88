@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-
 class EvenementController extends AbstractController
 {
     /**
@@ -26,18 +25,25 @@ class EvenementController extends AbstractController
     /**
      * @param EvenementRepository $repository
      * @return Response
-     * @Route ("/affiche", name="affiche")
+     * @Route ("/affichek", name="affichek")
      */
     function Affiche( ){
         $repo=$this->getDoctrine()->getRepository(Evenement::class);
 
         $evenement=$repo->findAll();
 
+
         return $this->render('evenement/index.html.twig',
             [
                 'Evenement'=>$evenement,
+
             ]);
+
+
     }
+
+
+
 
 
     /**
@@ -58,13 +64,15 @@ class EvenementController extends AbstractController
             $file = $form->get('image')->getData();
           //  $evenement->setRestaurant($Restaurant);;
                $uploads_directory = $this->getParameter(  'uploads_directory')   ;
-            $filename = $evenement->getTitre() . '.' . $file->guessExtension();
+            $filename = $evenement->getImage() . '.' . $file->guessExtension();
             $file->move(
                 $uploads_directory,
                 $filename
             );
             // On stocke l'image dans la base de données (son nom)
             $evenement->setImage($filename);
+            $evenement->setNomImage($filename);
+
 
            
            // $evenement->setCreatedAt(new \DateTime());
@@ -75,7 +83,7 @@ class EvenementController extends AbstractController
             $entityManager->persist($evenement);
             $entityManager->flush();
 
-            return $this->redirectToRoute('affiche');
+            return $this->redirectToRoute('affichek');
         }
 
         return $this->render('Evenement/Newevent.html.twig', [
@@ -101,7 +109,7 @@ class EvenementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('affiche');
+            return $this->redirectToRoute('affichek');
         }
 
         return $this->render('Evenement/editE.html.twig', [
@@ -113,7 +121,6 @@ class EvenementController extends AbstractController
     /**
      * @param $id
      * @param EvenementRepository $rep
-
      * @Route ("/Delete/{id}", name="delete")
      */
     function Delete($id,EvenementRepository $rep){
@@ -121,7 +128,51 @@ class EvenementController extends AbstractController
         $em=$this->getDoctrine()->getManager();
         $em->remove($evenement);
         $em->flush();
-        return $this->redirectToRoute('affiche');
+        return $this->redirectToRoute('affichek');
+
 
     }
+
+    /**
+     * @param $name
+     * @param \Swift_Mailer $mailer
+     * @return Response
+     */
+    public function indexx($name, \Swift_Mailer $mailer)
+    {
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('send@example.com')
+            ->setTo('recipient@example.com')
+            ->setBody(
+                $this->renderView(
+                // templates/emails/registration.html.twig
+                    'Evenement/registration.html.twig',
+                    ['name' => $name]
+                ),
+                'text/html'
+            )
+
+            // you can remove the following code if you don't define a text version for your emails
+            ->addPart(
+                $this->renderView(
+                    'Evenement/registration.txt.twig',
+                    ['name' => $name]
+                ),
+                'text/plain'
+            )
+        ;
+
+        $mailer->send($message);
+
+        return $this->redirectToRoute('affichek');
+
+
+
+    }
+
+
+
+
+
+
 }

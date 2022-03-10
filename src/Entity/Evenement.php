@@ -31,6 +31,29 @@ class Evenement
      */
     private $image;
 
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nomimage;
+
+    /**
+     * @return mixed
+     */
+    public function getNomimage()
+    {
+        return $this->nomimage;
+    }
+
+    /**
+     * @param mixed $nomimage
+     */
+    public function setNomimage($nomimage): void
+    {
+        $this->nomimage = $nomimage;
+    }
+
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(

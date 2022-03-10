@@ -8,7 +8,7 @@
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                            <h6 class="text-white text-capitalize ps-3">tableau des restaurants</h6>
+                            <h6 class="text-white text-capitalize ps-3">tableau des reservations</h6>
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
@@ -16,54 +16,36 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Restaurant</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">categorie</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">date ajout</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">nb_ people</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">date de reservation</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">accepter</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">refuser</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for r in restaurant %}
+                                {% for r in Reservation %}
+
+                     {% include 'evenement/afficheE.html.twig' with {e:e} only %}
+                            {% endfor %}
                                 <tr>
                                     <td>
 
                                         <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="{{ asset('/uploads/' ~ r.nomImage ) }}" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                            </div>
+
+
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">{{ r.nomRestaurant }}</h6>
-                                                <p class="text-xs text-secondary mb-0">{{ r.user.email }}</p>
+
+
+
+
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ r.categorieRestaurant }}</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                    {% if r.status=="verified" %}
-                                        <span class="badge badge-sm bg-gradient-success">verified</span>
-                                        {% else %}
-                                        <span class="badge badge-sm bg-gradient-danger">archived</span>
-                                        {% endif %}
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">{{ r.createdAt|date('d/m/y h:m:s')}} </span>
-                                    </td>
-                                    <td class="align-middle">
-                                    {% if r.status == 'not verified' %}
-                                        <a href="{{ path ('updatearchive',{'id':r.id}) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            verifier
-                                        </a>
-                                        {% else %}
-                                        <a href="{{ path ('updatearchive',{'id':r.id}) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            archiver
-                                        </a>
-                                        {% endif %}
-                                    </td>
+
                                 </tr>
-                                {% endfor %}
+
 
 
 
@@ -86,49 +68,7 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <div class="table-responsive p-0">
-                            <table class="table align-items-center justify-content-center mb-0">
-                                <thead>
-                                <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Image</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nom</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Restaurant</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder  opacity-7 ps-2">Prix</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder  opacity-7 ps-2">Date Ajout</th>
 
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                    {% for p in prod.getProduits %}
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2">
-                                            <div>
-                                                <img src="{{ asset('/uploads/' ~ p.nomimageProduit ) }}" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h6 class="mb-0 text-sm"></h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="text-sm font-weight-bold mb-0">{{ p.nomProduit }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-xs font-weight-bold">{{p.restaurant.nomRestaurant}}</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-sm font-weight-bold mb-0">{{ p.prixProduit }} dt</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-xs font-weight-bold">{{ p.createdAt|date('d/m/y h:m:s')}}</span>
-                                    </td>
-
-                                </tr>
-                                    {% endfor %}
-
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
@@ -188,6 +128,7 @@
                     <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
                 </div>
             </div>
+            
             <hr class="horizontal dark my-3">
             <div class="mt-2 d-flex">
                 <h6 class="mb-0">Light / Dark</h6>

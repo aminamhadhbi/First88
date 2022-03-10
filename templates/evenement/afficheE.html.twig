@@ -1,16 +1,139 @@
 
-                        <a class="menu_item modal_dialog" href="#modal-dialog">
+<link rel="stylesheet" href="dist/css/social-sharing.css">
 
 
 
-<h1>event</h1>
-                            <h3> {{ e.Titre }}</h3>
-                            <img src="{{asset('/uploads/' ~ e.Image ) }}" data-src="{{asset('/uploads/' ~ e.Image ) }}" >
-                            <h7> {{ e.description }}</h7>
-                            <a href="{{ path ('edit',{'id':e.id}) }}">Update</a>
-                            <a href="{{ path ('delete',{'id':e.id}) }}">Delete</a>
+<body>
+<div class="container"   >
+    <div class="card">
+        <style>
+
+            .container{
+                width: 1000px;
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .container .card{
+                position: relative;
+                cursor: pointer;
+            }
+
+            .container .card .face{
+                width: 300px;
+                height: 200px;
+                transition: 0.5s;
+            }
+
+            .container .card .face.face1{
+                position: relative;
+                background: #333;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+                transform: translateY(100px);
+            }
+
+            .container .card:hover .face.face1{
+                background: #ff0057;
+                transform: translateY(0);
+            }
+
+            .container .card .face.face1 .content{
+                opacity: 0.2;
+                transition: 0.5s;
+            }
+
+            .container .card:hover .face.face1 .content{
+                opacity: 1;
+            }
+
+            .container .card .face.face1 .content img{
+                max-width: 300px;
+            }
+
+            .container .card .face.face1 .content h3{
+                margin: 10px 0 0;
+                padding: 0;
+                color: #fff;
+                text-align: center;
+                font-size: 1.5em;
+            }
+
+            .container .card .face.face2{
+                position: relative;
+                background: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                box-sizing: border-box;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+                transform: translateY(-100px);
+            }
+
+            .container .card:hover .face.face2{
+                transform: translateY(0);
+            }
+
+            .container .card .face.face2 .content p{
+                margin: 0;
+                padding: 0;
+            }
+
+            .container .card .face.face2 .content a{
+                margin: 15px 0 0;
+                display:  inline-block;
+                text-decoration: none;
+                font-weight: 900;
+                color: #333;
+                padding: 5px;
+                border: 1px solid #333;
+            }
+
+            .container .card .face.face2 .content a:hover{
+                background: #333;
+                color: #fff;
+            }
+        </style>
+
+        <div class="face face1">
+            <div class="content">
+                <img src="{{asset('/uploads/' ~ e.nomimage ) }}" }}" >
 
 
-                        </a>
+                <h3>{{ e.Titre }}</h3>
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="content">
+                <p>{{ e.description }}</p>
+                <a href="#">subscribe</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<section>
+    <h2 id="social-buttons">Share</h2>
+    <p>
+        <a class="btn_1 mb_5" href="https://twitter.com/intent/tweet?text=http://127.0.0.1:8000/affiche#0"  >Twitter</a>
+        <a class="btn_1 mb_5" href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/affiche#0">Facebook</a>
+        <a class="btn_1 mb_5" href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=http://127.0.0.1:8000/affiche#0">LinkedIn</a>
+        <a class="btn_1 mb_5" href="https://pinterest.com/pin/create/button/?url=&media=&description=http://127.0.0.1:8000/affiche#0">Pinterest</a>
+        <a class="btn_1 mb_5" href="http://www.reddit.com/submit?url=YOUR-URL&title=http://127.0.0.1:8000/affiche#0">Reddit</></a>
+
+        <button class="like__btn">
+            <span id="icon"><i class="far fa-thumbs-up"></i></span>
+            <span id="count">0</span> Like
+        </button>
+
+
+    </p>
+</section>
+
 
 <!-- /row -->

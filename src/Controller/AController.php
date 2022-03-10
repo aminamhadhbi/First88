@@ -33,7 +33,7 @@ class AController extends AbstractController
 
         $Reservation=$repo->findAll();
 
-        return $this->render('C:\Users\DELL\First\templates\back.html.twig',
+        return $this->render('Reservation/backk.html.twig',
             [
                 'Reservation'=>$Reservation,
             ]);
@@ -71,7 +71,7 @@ class AController extends AbstractController
      * @param Request $request
      * @param Reservation $Reservation
      * @return Response
-     * @Route ("Reservation/edit/{id}",name="edit")
+     * @Route ("Reservation/edit/{id}",name="editt")
      */
 
      function Update(ReservationRepository $repository,$id,Request $request)
@@ -83,7 +83,7 @@ class AController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('edit');
+            return $this->redirectToRoute('editt');
         }
 
         return $this->render('Reservation/edit.html.twig', [
@@ -94,7 +94,7 @@ class AController extends AbstractController
     /**
      * @param $id
      * @param ReservationRepository $rep
-     * @Route ("/Delete/{id}", name="delete")
+     * @Route ("/Delete/{id}", name="de")
      */
 
     function Delete($id,ReservationRepository $rep){

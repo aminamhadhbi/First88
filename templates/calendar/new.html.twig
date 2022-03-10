@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau evenement{% endblock %}
+
+{% block body %}
+    <h1>Creer un nouveau evenement</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.title) }}
+    {{ form_row(form.start) }}
+    {{ form_row(form.end) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.all_day) }}
+    {{ form_row(form.border_color) }}
+
+    <button class="btn">{{ button_label|default('Ajouter un evenement') }}</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('calendar_index') }}">back to list</a>
+{% endblock %}
